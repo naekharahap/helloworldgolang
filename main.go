@@ -1,6 +1,7 @@
 package main
 
 import (
+	"helloworld/helloworld"
 	"log"
 	"net/http"
 )
@@ -15,7 +16,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(HelloWorld()))
+		w.Write([]byte(helloworld.HelloWorld()))
 	default:
 		w.WriteHeader(http.StatusNotFound)
 	}

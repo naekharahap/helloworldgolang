@@ -1,0 +1,16 @@
+{{- if .Values.route.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "helloworldgolang.fullname" . }}
+  labels:
+    {{- include "helloworldgolang.labels" . | nindent 4 }}
+spec:
+  port:
+    targetPort: {{ .Values.service.portName }}
+  to:
+    kind: Service
+    name: {{ include "helloworldgolang.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+{{- end }}
